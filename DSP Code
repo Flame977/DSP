@@ -1,0 +1,195 @@
+Practical  no-1
+Aim- Generation of  discrete signal's 
+Unit simple sequence
+Source Code
+clc;
+clf;
+clear all;
+L=input("Enter length of signal:");
+n=-L:L;
+x1=[zeros(1,L),ones(1,1),zeros(1,L)];
+plot2d3(n,x1);
+title("Unit impulse Sequence");
+xlabel("No.of samples");
+ylabel("Amplitude");
+
+Enter length of signal:5
+
+OUTPUT-
+ 
+ 
+Unit steps sequence
+cfc;
+clf;
+clear all;
+L=input("Enter length of signal:");
+n=-L:L;
+x2=[zeros(1,L),ones(1,L+1)];
+plot2d3(n,x2);
+title("Unit impulse Sequence");
+xlabel("No.of samples");
+ylabel("Amplitude");
+
+
+Enter length of signal:4
+OUTPUT
+ 
+ 
+Exponentially decreasing sequence
+Input-
+clc;
+clf;
+clear all;
+L=input("Enter length of signal:");
+b=input("Enter the coeff:")
+t=-2:0.1:2;
+x4=exp(b*t);
+plot2d3(x4);
+title("Exponential Signal","fontsize",3);
+xlabel("No.of samples");
+ylabel("Amplitude");
+
+Enter length of signal:-10
+Enter the coeff:-0.5
+Output-
+ 
+
+ 
+Discrete RAMP Sequence
+INPUT-
+clc;
+clf;
+clear all;
+L=input("Enter length of signal:");
+n=-L:L;
+x3=[zeros(1,L),0:L];
+plot2d3(n,x3);
+title("RAMP OF Signal","fontsize",4);
+xlabel("No.of samples","fontsize",4);
+ylabel("Amplitude","fontsize",4);
+Enter length of signal:5
+OUTPUT
+ 
+
+ 
+Exponentially increasing sequence
+clc;
+clf;
+clear all;
+L=input("Enter length of signal:");
+b=input("Enter the coeff:")
+t=-2:0.1:2;
+x4=exp(b*t);
+plot2d3(x4);
+title("Exponential Signal","fontsize",3);
+xlabel("No.of samples");
+ylabel("Amplitude");
+Enter length of signal:10
+Enter the coeff:0.5
+Output-
+ 
+ 
+Practical  no 2
+Aim: Linear Convolution of two sequences
+Source Code:
+clc;
+clf;
+clear all;
+x = input('enter x[n] ');
+m = length(x);
+subplot(3,1,1);
+plot2d3(x);
+h = input('enter h[n] ');
+n = length(h);
+subplot(3,1,2);
+plot2d3(h);
+z=convol(x,h);
+disp(z);
+subplot(3,1,3);
+plot2d3(z);
+
+Output:
+ 
+ 
+Practical  no 3
+Aim: Circular Convolution of two sequences
+Source Code:
+clc;
+clf;
+clear all;
+xn = input("Enter x[n] : ");
+subplot(3,1,1);
+plot2d3(xn);
+hn = input("Enter h[n] : ");
+subplot(3,1,2);
+plot2d3(hn);
+x_new =[];
+for i = 1 : length(xn)
+    x_new = [x_new;xn];
+    xn = [xn($) xn(1:$-1)];
+end
+yn=x_new' * hn';
+disp(yn);
+subplot(3,1,3);
+plot2d3(yn);
+
+Output:
+  
+Practical  no 4
+Aim: Performing Circular Convolution Using DFT, IDFT method
+Source Code:
+clc;
+clear all;
+xn = input("Enter x[n] : ");
+hn = input("Enter h[n] : ");
+L = length(xn);
+xDFT = fft(xn,-1);
+hDFT = fft(hn,-1);
+disp(xDFT, "DFT of x[n] = ");
+disp(hDFT, "DFT of h[n] = ");
+yDFT = xDFT.*hDFT;
+disp(yDFT, "DFT of y[n] = ");
+Answer = abs(fft(yDFT,-1));
+disp(Answer,"Circular Convolution = ");
+IDFT = Answer/L;
+disp(IDFT, "IDFT = ");
+
+Output:
+ 
+
+ 
+Practical No. 5
+Aim: Performing Linear Convolution using Circular Convolution
+Source Code: 
+clc;
+clear all;
+x = input("Enter x[n] : ");
+h = input("Enter h[n] : ");
+N = length(x);//4
+M = length(h);//4
+L = N + M -1;//7
+xn = [x, zeros(1,L-N)];
+hn = [h, zeros(1,L-M)];
+x_new =[];
+for i = 1 : length(xn)
+    x_new = [x_new;xn];
+    xn = [xn($) xn(1:$-1)];
+end
+yn=x_new' * hn';
+disp(yn);
+Output:
+ 
+ 
+Practical no. 6
+Aim: Performing FFT and IFFT of a discrete sequence
+Source Code:
+clc;
+clear all;
+xn = input("Enter discrete signal : ");
+fourier_xn = fft(xn,-1);
+inv_xn = ifft(fourier_xn);
+disp(fourier_xn, 'Fourier transform : ');
+disp(inv_xn, 'Inverse fourier transform : ');
+
+Output:
+ 
